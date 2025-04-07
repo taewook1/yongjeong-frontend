@@ -1,0 +1,20 @@
+.alumni-news {
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+.alumni-news h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.alumni-news ul {
+  list-style: none;
+  padding: 0;
+}
+
+.alumni-news li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}

@@ -1,0 +1,8 @@
+.homepage-wrapper {
+  width: 100%;
+  max-width: 1440px; /* PDF 기준 가로폭 */
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  padding: 0;
+}
