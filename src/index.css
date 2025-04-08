@@ -1,5 +1,6 @@
 :root {
-  font-family: 'Noto Sans KR', sans-serif;
+  /* font-family: 'Noto Sans KR', system-ui, sans-serif; */
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #333;
@@ -16,4 +17,5 @@ body, html, #root {
   width: 100%;
   height: 100%;
   background-color: #f6f6f6;
+  overflow-x: hidden;
 }

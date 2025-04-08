@@ -10,7 +10,7 @@ function Header() {
       <div className="auth-links">
         <Link to="/login" className="auth-button">로그인</Link>
         <span> | </span>
-        <Link to="/register" className="auth-button">회원가입</Link>
+        <Link to="/signup" className="auth-button">회원가입</Link>
       </div>
     </header>
   );

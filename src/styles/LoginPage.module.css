@@ -1,0 +1,150 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 130px); /* Footer 포함 높이 동일 */
+  background-color: #fff;
+}
+
+.loginBox {
+  width: 100%;
+  max-width: 440px;
+  height: 580px;
+  padding: 60px 40px;
+  border: 1px solid #ddd;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.logoWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  width: 200px;
+  margin-bottom: 60px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 2%;
+  font-size: 16px;
+  outline: none;
+  color: #333;
+}
+
+.input::placeholder {
+  font-size: 14px;
+  color: #bbb;
+}
+
+.loginButton {
+  background-color: #012361;
+  color: white;
+  padding: 16px;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.snsWrap {
+  margin-top: 40px;
+}
+
+.snsDivider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.snsDivider hr {
+  flex: 1;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.snsButtons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.kakao {
+  width: 110px;
+  background-color: #fee500;
+  border-radius: 30px;
+  padding: 10px 24px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.naver {
+  width: 110px;
+  background-color: #1ec800;
+  border-radius: 30px;
+  padding: 10px 24px;
+  border: none;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.linkRow {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #666;
+}
+
+.leftLinks {
+  display: flex;
+  gap: 10px;
+}
+
+.leftLinks span {
+  color: #bbb;
+}
+
+.leftLinks button {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+}
+
+.textButton {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: normal;
+  padding: 0;
+}
+
+.signupBtn {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}

@@ -6,3 +6,20 @@
   box-sizing: border-box;
   padding: 0;
 }
+
+.preview-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px;
+  gap: 40px; /* 두 컴포넌트 사이 간격 */
+}
+
+/* 각각 반씩 차지 */
+.notice-preview-container,
+.alumni-preview-container {
+  flex: 1;
+}

@@ -1,14 +1,49 @@
-.banner {
-  width: 100%;
-  height: 300px;
-  background: url('/banner.jpg') no-repeat center center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.banner-container {
+  width: 100vw;
+  height: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
 }
 
-.banner h2 {
-  color: black;
-  font-size: 2rem;
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 넓은 클릭영역 */
+.click-zone {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 30%;
+  z-index: 10;
+  cursor: pointer;
+}
+.click-zone-left {
+  left: 0;
+}
+.click-zone-right {
+  right: 0;
+}
+
+/* 화살표 표시용 */
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  font-size: 120px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.95);
+  pointer-events: none; /* ← 화살표 자체는 클릭되지 않음 */
+}
+
+.custom-prev {
+  left: 10%;
+}
+
+.custom-next {
+  right: 10%;
 }
