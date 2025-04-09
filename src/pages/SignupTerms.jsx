@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../styles/SignupTerms.module.css';
 import FooterSimple from '../components/FooterSimple';
 import { ChevronRight } from 'lucide-react';
+import Modal from '../components/Modal';
+import termsData from '../data/termsData';
 
 const SignupTerms = () => {
   const navigate = useNavigate();
@@ -12,6 +14,7 @@ const SignupTerms = () => {
     privacy: false,
     thirdParty: false,
   });
+  const [activeModal, setActiveModal] = useState(null); // ✅ 모달 상태
 
   const handleAllAgree = () => {
     const newValue = !agreeAll;
@@ -61,7 +64,7 @@ const SignupTerms = () => {
 
             <hr className={styles.divider} />
 
-            {[
+            {[ 
               { id: 'terms', label: '이용약관 동의 (필수)' },
               { id: 'privacy', label: '개인정보 수집/이용 동의 (필수)' },
               { id: 'thirdParty', label: '제 3자 정보제공 (필수)' },
@@ -74,7 +77,11 @@ const SignupTerms = () => {
                 />
                 <span className={`${styles.circle} ${agreements[item.id] ? styles.checked : ''}`} />
                 <span className={styles.labelText}>{item.label}</span>
-                <button className={styles.arrowBtn}>
+                <button
+                  className={styles.arrowBtn}
+                  onClick={() => setActiveModal(item.id)}
+                  type="button"
+                >
                   <ChevronRight size={18} />
                 </button>
               </label>
@@ -86,6 +93,20 @@ const SignupTerms = () => {
           </button>
         </div>
       </div>
+
+      {activeModal && (
+        <Modal
+          title={{
+            terms: '이용약관',
+            privacy: '개인정보 수집 및 이용',
+            thirdParty: '제3자 정보제공',
+          }[activeModal]}
+          onClose={() => setActiveModal(null)}
+        >
+          <p>{termsData[activeModal]}</p>
+        </Modal>
+      )}
+
       <FooterSimple />
     </>
   );

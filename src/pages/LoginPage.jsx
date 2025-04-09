@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/LoginPage.module.css';
 import FooterSimple from '../components/FooterSimple';
+import axios from '../api/axiosInstance';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -12,16 +13,24 @@ const LoginPage = () => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  
     if (!form.email || !form.password) {
       alert('아이디와 비밀번호를 모두 입력해주세요.');
       return;
     }
   
-    // TODO: 실제 로그인 처리
-    console.log("로그인 시도:", form);
+    try {
+      const res = await axios.post('/auth/login', {
+        email: form.email,
+        password: form.password,
+      });
+      console.log('✅ 로그인 성공', res.data);
+      // 예: 토큰 저장, 페이지 이동 등
+    } catch (err) {
+      console.error(err);
+      alert('로그인에 실패했습니다.');
+    }
   };
 
   const [placeholderEmail, setPlaceholderEmail] = useState('아이디');

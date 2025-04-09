@@ -2,14 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 130px); /* 푸터 포함 높이 보정 */
+  min-height: calc(100vh - 130px);
   background-color: #fff;
 }
 
 .box {
   width: 100%;
   max-width: 440px;
-  height: 660px; /* ✅ 입력 필드 많아 여유 있게 */
+  min-height: 660px;
   padding: 60px 40px;
   border: 1px solid #ddd;
   background-color: white;
@@ -33,7 +33,6 @@
   margin-bottom: 30px;
 }
 
-/* ✅ stepper는 타이틀 & 서브타이틀 아래에 위치 */
 .stepper {
   display: flex;
   justify-content: center;
@@ -61,6 +60,12 @@
   gap: 16px;
 }
 
+.inputWrap {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
 .input {
   border: none;
   border-bottom: 1px solid #ccc;
@@ -73,6 +78,47 @@
 .input::placeholder {
   font-size: 14px;
   color: #bbb;
+}
+
+.errorInput {
+  border-bottom: 1px solid red;
+}
+
+.errorMsg {
+  font-size: 13px;
+  color: red;
+  margin-top: 4px;
+}
+
+.successMsg {
+  font-size: 13px;
+  color: green;
+  margin-top: 4px;
+}
+
+.idRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.idRow input {
+  flex: 1;
+}
+
+.dupButton {
+  padding: 8px 10px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  color: #333 !important;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dupButton:hover {
+  background-color: #eaeaea;
 }
 
 .submitButton {
