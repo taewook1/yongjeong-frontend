@@ -1,0 +1,84 @@
+.notice-page-container {
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.notice-header {
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  width: 90%;
+}
+
+.notice-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #012361;
+  margin-bottom: 10px;
+}
+
+.notice-count {
+  font-size: 15px;
+  color: #555;
+  margin-left: 2%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+}
+
+.notice-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 90%;
+}
+
+.notice-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 10px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s ease;
+}
+
+.notice-row:hover {
+  background-color: #dbdde0;
+}
+
+.notice-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.notice-number {
+  color: #888;
+  font-weight: 500;
+  width: 30px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.notice-title-link {
+  color: #012361;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notice-title-link:hover {
+  text-decoration: underline;
+  color: #0051a3;
+}
+
+.notice-date {
+  font-size: 14px;
+  color: #888;
+  text-align: right;
+  min-width: 90px;
+}

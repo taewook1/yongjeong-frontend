@@ -17,6 +17,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-bottom: 20px;
 }
 
 .title {
@@ -63,7 +64,7 @@
 .inputWrap {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .input {
@@ -88,12 +89,15 @@
   font-size: 13px;
   color: red;
   margin-top: 4px;
+  margin-left: 2%;
+  line-height: 1.4;
 }
 
 .successMsg {
   font-size: 13px;
   color: green;
   margin-top: 4px;
+  margin-left: 2%;
 }
 
 .idRow {
@@ -107,18 +111,26 @@
 }
 
 .dupButton {
-  padding: 8px 10px;
-  font-size: 13px;
-  border: 1px solid #ccc;
+  padding: 8px 16px;
+  background-color: #012361;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Pretendard', sans-serif;
+  letter-spacing: -0.2px;
+  border: none;
   border-radius: 4px;
-  background-color: #f9f9f9;
-  color: #333 !important;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .dupButton:hover {
-  background-color: #eaeaea;
+  background-color: #001f4d;
+}
+
+.dupButton:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .submitButton {
@@ -126,8 +138,12 @@
   color: white;
   padding: 16px;
   font-size: 15px;
-  font-weight: bold;
+  font-weight: 600;
+  font-family: 'Pretendard', sans-serif;
+  letter-spacing: -0.2px;
   border: none;
   cursor: pointer;
   margin-top: 20px;
 }
+
+

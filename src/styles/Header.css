@@ -31,3 +31,21 @@
 .auth-button:hover {
   color: #005bac;
 }
+
+/* ✅ 로그인 상태 아이콘 영역 추가 */
+.user-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 20px;
+  color: #012361;
+}
+
+.icon {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.icon:hover {
+  color: #0051a3;
+}

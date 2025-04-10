@@ -28,6 +28,7 @@ const SignupForm = () => {
     username: '',
     password: '',
     confirmPassword: '',
+    generation: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -57,7 +58,8 @@ const SignupForm = () => {
 
     try {
       setChecking(true);
-      const res = await axios.get(`/auth/check-username?username=${form.username}`);
+      const res = await axios.get(`auth/check-username?username=${form.username}`);
+      console.log('중복 확인 응답:', res);
       setIsDuplicate(res.data.exists);
     } catch (err) {
       console.error(err);
@@ -69,7 +71,7 @@ const SignupForm = () => {
 
   const sendCode = async () => {
     try {
-      await axios.post(`/api/auth/send-code`, { phone: form.phone });
+      await axios.post(`/auth/send-code`, { phone: form.phone });
       setCodeSent(true);
       alert('인증번호가 전송되었습니다.');
     } catch (err) {
@@ -86,7 +88,8 @@ const SignupForm = () => {
       });
       if (res.data.success) {
         setIsPhoneVerified(true);
-        alert('휴대폰 인증이 완료되었습니다.');
+        setErrors(prev => ({ ...prev, phone: '' }));
+        alert('인증이 완료되었습니다.');
       } else {
         alert('인증번호가 올바르지 않습니다.');
       }
@@ -143,11 +146,8 @@ const SignupForm = () => {
     if (!validateForm()) return;
 
     try {
-      await axios.post(`/auth/register`, {
-        ...form,
-      });
-      alert('회원가입 완료!');
-      navigate('/');
+      await axios.post('/auth/register', { ...form });
+      navigate('/signup-complete'); // ✅ 무조건 성공하면 이동
     } catch (err) {
       console.error(err);
       alert('회원가입 중 오류가 발생했습니다.');
@@ -168,6 +168,32 @@ const SignupForm = () => {
           </div>
 
           <form className={styles.form} onSubmit={handleSubmit}>
+            
+            {/* 아이디 + 중복 확인 */}
+            <div className={styles.inputWrap}>
+              <div className={styles.idRow}>
+                <input
+                  ref={(el) => inputRefs.current.username = el}
+                  name="username"
+                  placeholder="아이디"
+                  value={form.username}
+                  onChange={handleChange}
+                  className={`${styles.input} ${errors.username ? styles.errorInput : ''}`}
+                />
+                <button
+                  type="button"
+                  className={styles.dupButton}
+                  onClick={checkDuplicate}
+                  disabled={checking}
+                >
+                  {checking ? '확인 중...' : '중복 확인'}
+                </button>
+              </div>
+              {errors.username && <p className={styles.errorMsg}>{errors.username}</p>}
+              {isDuplicate === false && <p className={styles.successMsg}>사용 가능한 아이디입니다.</p>}
+              {isDuplicate === true && <p className={styles.errorMsg}>이미 사용 중인 아이디입니다.</p>}
+            </div>
+
             {['name', 'birth'].map((name) => (
               <div key={name} className={styles.inputWrap}>
                 <input
@@ -183,6 +209,20 @@ const SignupForm = () => {
                 {errors[name] && <p className={styles.errorMsg}>{errors[name]}</p>}
               </div>
             ))}
+            {/* 기수 인증 */}
+            <div className={styles.inputWrap}>
+              <input
+                type="number"
+                name="generation"
+                placeholder="기수 (예: 32)"
+                value={form.generation}
+                onChange={handleChange}
+                className={`${styles.input} ${errors.generation ? styles.errorInput : ''}`}
+                min="1"
+                max="999"
+              />
+              {errors.generation && <p className={styles.errorMsg}>{errors.generation}</p>}
+            </div>
 
             {/* 휴대폰 번호 + 인증번호 받기 */}
             <div className={styles.inputWrap}>
@@ -226,31 +266,6 @@ const SignupForm = () => {
               {isPhoneVerified && (
                 <p className={styles.successMsg}>휴대폰 인증 완료 ✅</p>
               )}
-            </div>
-
-            {/* 아이디 + 중복 확인 */}
-            <div className={styles.inputWrap}>
-              <div className={styles.idRow}>
-                <input
-                  ref={(el) => inputRefs.current.username = el}
-                  name="username"
-                  placeholder="아이디"
-                  value={form.username}
-                  onChange={handleChange}
-                  className={`${styles.input} ${errors.username ? styles.errorInput : ''}`}
-                />
-                <button
-                  type="button"
-                  className={styles.dupButton}
-                  onClick={checkDuplicate}
-                  disabled={checking}
-                >
-                  {checking ? '확인 중...' : '중복 확인'}
-                </button>
-              </div>
-              {errors.username && <p className={styles.errorMsg}>{errors.username}</p>}
-              {isDuplicate === false && <p className={styles.successMsg}>사용 가능한 아이디입니다.</p>}
-              {isDuplicate === true && <p className={styles.errorMsg}>이미 사용 중인 아이디입니다.</p>}
             </div>
 
             {/* 비밀번호 */}

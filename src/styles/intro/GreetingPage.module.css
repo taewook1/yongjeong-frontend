@@ -1,0 +1,34 @@
+.greetingContainer {
+  padding: 40px 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.greetingBlock {
+  text-align: left;
+  color: #333;
+}
+
+.greetingRole {
+  font-size: 22px;
+  font-weight: 800;
+  color: #012361;
+  margin-bottom: 12px;
+  border-left: 4px solid #012361;
+  padding-left: 12px;
+}
+
+.greetingContent {
+  font-size: 17px;
+  line-height: 1.8;
+  white-space: pre-line;
+  margin-bottom: 10px;
+}
+
+.greetingName {
+  font-size: 15px;
+  font-weight: 500;
+  color: #555;
+  text-align: right;
+}

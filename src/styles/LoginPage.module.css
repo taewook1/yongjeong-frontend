@@ -26,6 +26,8 @@
 .logo {
   width: 200px;
   margin-bottom: 60px;
+  object-fit: contain;
+  cursor: pointer;
 }
 
 .form {
@@ -52,8 +54,10 @@
   background-color: #012361;
   color: white;
   padding: 16px;
-  font-size: 17px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Pretendard', sans-serif;
+  letter-spacing: -0.2px;
   border: none;
   cursor: pointer;
   margin-top: 20px;
@@ -91,7 +95,10 @@
   border-radius: 30px;
   padding: 10px 24px;
   border: none;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Pretendard', sans-serif;
+  letter-spacing: -0.2px;
   cursor: pointer;
 }
 
@@ -101,7 +108,10 @@
   border-radius: 30px;
   padding: 10px 24px;
   border: none;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Pretendard', sans-serif;
+  letter-spacing: -0.2px;
   color: white;
   cursor: pointer;
 }

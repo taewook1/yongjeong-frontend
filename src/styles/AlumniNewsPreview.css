@@ -68,5 +68,6 @@
 .alumni-date {
   color: #666;
   font-size: 14px;
-  margin-right: 3%;
+  margin-right: 2%;
+  width: 80px;
 }

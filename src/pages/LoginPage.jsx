@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../styles/LoginPage.module.css';
 import FooterSimple from '../components/FooterSimple';
 import axios from '../api/axiosInstance';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [form, setForm] = useState({ username: '', password: '' });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,25 +16,30 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.email || !form.password) {
+    if (!form.username || !form.password) {
       alert('아이디와 비밀번호를 모두 입력해주세요.');
       return;
     }
-  
+
     try {
       const res = await axios.post('/auth/login', {
-        email: form.email,
+        username: form.username,
         password: form.password,
       });
-      console.log('✅ 로그인 성공', res.data);
-      // 예: 토큰 저장, 페이지 이동 등
+
+      const { token, user } = res.data;
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+
+      navigate('/');
     } catch (err) {
       console.error(err);
-      alert('로그인에 실패했습니다.');
+      const msg = err.response?.data?.msg || '로그인에 실패했습니다.';
+      alert(msg);
     }
   };
 
-  const [placeholderEmail, setPlaceholderEmail] = useState('아이디');
+  const [placeholderUsername, setPlaceholderUsername] = useState('아이디');
   const [placeholderPw, setPlaceholderPw] = useState('비밀번호');
 
   return (
@@ -41,19 +47,21 @@ const LoginPage = () => {
       <div className={styles.container}>
         <div className={styles.loginBox}>
           <div className={styles.logoWrap}>
-            <img src="/logo.png" alt="로고" className={styles.logo} />
+            <Link to="/">
+              <img src="/logo.png" alt="로고" className={styles.logo} />
+            </Link>
           </div>
           <form onSubmit={handleSubmit} className={styles.form}>
             <input
               type="text"
-              name="email"
-              value={form.email}
+              name="username"
+              value={form.username}
               onChange={handleChange}
-              onFocus={() => setPlaceholderEmail('')}
+              onFocus={() => setPlaceholderUsername('')}
               onBlur={() => {
-                if (form.email === '') setPlaceholderEmail('아이디');
+                if (form.username === '') setPlaceholderUsername('아이디');
               }}
-              placeholder={placeholderEmail}
+              placeholder={placeholderUsername}
               className={styles.input}
             />
             <input

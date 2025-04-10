@@ -20,7 +20,7 @@ const AlumniNewsPreview = () => {
         </a>
       </div>
       <ul className="alumni-list">
-        {news.map((item) => (
+        {Array.isArray(news) && news.map((item) => (
           <li key={item.id} className="alumni-item">
             <a href={`/alumni-news/${item.id}`} className="alumni-title">{item.title}</a>
             <span className="alumni-date">

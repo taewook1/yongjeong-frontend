@@ -1,29 +1,32 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from '../api/axiosInstance';
 import '../styles/NoticePreview.css';
 
 const NoticePreview = () => {
   const [notices, setNotices] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/notices/latest')
-      .then(res => res.json())
-      .then(data => setNotices(data))
-      .catch(err => console.error('공지사항 불러오기 실패:', err));
+    axios.get('/notices/latest')
+      .then((res) => setNotices(res.data))
+      .catch((err) => console.error('공지사항 불러오기 실패:', err));
   }, []);
 
   return (
     <div className="notice-preview-container">
       <div className="notice-preview-header">
-        <h2>공지사항</h2>
-        <a href="/notices" className="notice-more">
-          더보기 <span className="arrow">›</span>
-        </a>
+        <h2 className="preview-title">공지사항</h2>
+        <Link to="/community/notice" className="notice-preview-more">
+          더보기 <span className="preview-arrow">›</span>
+        </Link>
       </div>
-      <ul className="notice-list">
+      <ul className="notice-preview-list">
         {notices.map((notice) => (
-          <li key={notice.id} className="notice-item">
-            <a href={`/notices/${notice.id}`} className="notice-title">{notice.title}</a>
-            <span className="notice-date">
+          <li key={notice.id} className="notice-preview-item">
+            <a href={`/notices/${notice.id}`} className="notice-preview-title">
+              {notice.title}
+            </a>
+            <span className="notice-preview-date">
               {new Date(notice.created_at).toLocaleDateString()}
             </span>
           </li>
