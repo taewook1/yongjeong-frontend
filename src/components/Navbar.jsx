@@ -57,14 +57,14 @@ const submenuPathMap = {
   '자유게시판': 'freeboard',
 
   // 회비 / 기부 / 혜택
-  '회비 안내': 'fee-guide',
+  '회비 안내': 'guide',
   '회비 사용내역': 'fee-usage',
   '회비 납부현황': 'fee-status',
   '발전기금': 'fund',
   '서비스': 'service',
 
   // 장학재단
-  '재단 소개': 'foundation',
+  '재단 소개': 'intro',
   '장학 사업': 'scholarship',
 };
 
@@ -73,7 +73,7 @@ const submenuPrefixMap = {
   '용정 기록관': 'archive',
   '회원 동정': 'alumni',
   '커뮤니티': 'community',
-  '회비 / 기부 / 혜택': 'support',
+  '회비 / 기부 / 혜택': 'membership',
   '장학재단': 'foundation',
 };
 

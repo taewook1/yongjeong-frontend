@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from '../../styles/intro/GreetingPage.module.css';
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
 
 const greetings = [
   {
@@ -32,11 +34,17 @@ const GreetingPage = () => {
   return (
     <div className={styles.greetingContainer}>
       {greetings.map((greet, index) => (
-        <div key={index} className={styles.greetingBlock}>
+        <motion.div
+          key={index}
+          className={styles.greetingBlock}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 * index, duration: 0.6 }}
+        >
           <h3 className={styles.greetingRole}>{greet.role}</h3>
           <p className={styles.greetingContent}>{greet.content}</p>
           <p className={styles.greetingName}>– {greet.name}</p>
-        </div>
+        </motion.div>
       ))}
     </div>
   );

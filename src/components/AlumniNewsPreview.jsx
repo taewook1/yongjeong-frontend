@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/AlumniNewsPreview.css';
 
 const AlumniNewsPreview = () => {
@@ -15,9 +16,9 @@ const AlumniNewsPreview = () => {
     <div className="alumni-preview-container">
       <div className="alumni-preview-header">
         <h2>동창 동정</h2>
-        <a href="/alumni-news" className="alumni-more">
+        <Link to="/alumni/alumni-events" className="alumni-more">
           더보기 <span className="arrow">›</span>
-        </a>
+        </Link>
       </div>
       <ul className="alumni-list">
         {Array.isArray(news) && news.map((item) => (

@@ -8,7 +8,6 @@
 .container {
   width: 100%;
   max-width: 1200px;
-  background-color: #012361; /* 짙은 파란색 박스 */
   color: white;
   padding: 60px 40px;
   box-sizing: border-box;
@@ -16,6 +15,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  background-image: url('../assets/membership-box.png'); /* 이미지 경로 */
 }
 
 .label {
