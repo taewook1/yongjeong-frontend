@@ -4,6 +4,7 @@ import styles from '../styles/LoginPage.module.css';
 import FooterSimple from '../components/FooterSimple';
 import axios from '../api/axiosInstance';
 import { Link } from 'react-router-dom';
+import logo from '../assets/yongjeong-logo.png';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const LoginPage = () => {
         <div className={styles.loginBox}>
           <div className={styles.logoWrap}>
             <Link to="/">
-              <img src="/logo.png" alt="로고" className={styles.logo} />
+              <img src={logo} alt="용정중학교 총동창회 로고" />
             </Link>
           </div>
           <form onSubmit={handleSubmit} className={styles.form}>

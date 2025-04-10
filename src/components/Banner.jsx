@@ -4,15 +4,16 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import '../styles/Banner.css';
 
+import mainbanner1 from '../assets/mainbanner2.jpg';
+import mainbanner2 from '../assets/mainbanner7.jpg';
+import mainbanner3 from '../assets/mainbanner3.jpg';
+
 const Banner = () => {
   const swiperRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  const banners = [
-    'https://via.placeholder.com/1600x400?text=배너+1',
-    'https://via.placeholder.com/1600x400?text=배너+2',
-    'https://via.placeholder.com/1600x400?text=배너+3',
-  ];
+
+  const banners = [mainbanner1, mainbanner2, mainbanner3];
 
   const handlePrev = () => {
     if (swiperRef.current) swiperRef.current.slidePrev();

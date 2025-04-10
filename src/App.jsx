@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import IntroPage from './pages/intro/IntroPage';
 import GreetingPage from './pages/intro/GreetingPage';
+import RecordPage from './pages/record/RecordPage';
+import AnnualMeetingPage from './pages/record/AnnualMeetingPage';
 import CommunityPage from './pages/community/CommunityPage';
 import NoticePage from './pages/community/NoticePage';
 import AlumniNewsPage from './pages/AlumniNewsPage';
@@ -20,6 +22,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/intro" element={<IntroPage />}>
           <Route path="greeting" element={<GreetingPage />} />
+        </Route>
+        <Route path="/archive" element={<RecordPage />}>
+          <Route path="annual-meeting" element={<AnnualMeetingPage />} />
         </Route>
         <Route path="community" element={<CommunityPage />}>
           <Route path="notice" element={<NoticePage />} />

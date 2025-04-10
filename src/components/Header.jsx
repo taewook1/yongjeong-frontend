@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle, FaBell, FaSignOutAlt } from "react-icons/fa";
+import logo from '../assets/mainlogo2.png';
 import "../styles/Header.css";
 
 function Header() {
@@ -16,7 +17,7 @@ function Header() {
     <header className="header">
       <div className="logo">
         <Link to="/">
-          <img src="/logo.png" alt="용정중학교 총동창회" />
+          <img src={logo} alt="용정중학교 총동창회 로고" />
         </Link>
       </div>
 

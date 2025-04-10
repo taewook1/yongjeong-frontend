@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../styles/SignupChoice.module.css';
 import FooterSimple from '../components/FooterSimple';
 import { Link } from 'react-router-dom';
+import logo from '../assets/yongjeong-logo.png';
 
 const SignupChoice = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const SignupChoice = () => {
         <div className={styles.box}>
           <div className={styles.logoWrap}>
             <Link to="/">
-              <img src="/logo.png" alt="로고" className={styles.logo} />
+              <img src={logo} alt="용정중학교 총동창회 로고" />
             </Link>
           </div>
           <h2 className={styles.title}>회원가입을 시작합니다!</h2>
