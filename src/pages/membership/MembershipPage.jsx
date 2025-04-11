@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -7,19 +7,27 @@ import styles from '../../styles/membership/MembershipPage.module.css';
 
 const menuMap = {
   guide: 'guide',
-  usage: 'usage',
-  status: 'status',
+  usage: 'fee-usage',
+  status: 'fee-status',
   fund: 'fund',
   service: 'service'
 };
 
-const MembershipPage = () => {
-  const [active, setActive] = useState('guide');
-  const navigate = useNavigate();
+const menuLabel = {
+  guide: '회비 안내',
+  usage: '회비 사용내역',
+  status: '회비 납부현황',
+  fund: '발전기금',
+  service: '서비스',
+};
 
-  const handleClick = (menuKey) => {
-    setActive(menuKey);
-    navigate(`/membership/${menuMap[menuKey]}`);
+const MembershipPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentPath = location.pathname.split('/')[2];
+
+  const handleClick = (key) => {
+    navigate(`/membership/${menuMap[key]}`);
   };
 
   return (
@@ -33,16 +41,18 @@ const MembershipPage = () => {
       <div className={styles.membershipPage}>
         <div className={styles.sidebar}>
           <div className={styles.sidebarNav}>
-            <button className={active === 'guide' ? styles.active : ''} onClick={() => handleClick('guide')}>회비 안내</button>
-            <button className={active === 'usage' ? styles.active : ''} onClick={() => handleClick('usage')}>회비 사용내역</button>
-            <button className={active === 'status' ? styles.active : ''} onClick={() => handleClick('status')}>회비 납부현황</button>
-            <button className={active === 'fund' ? styles.active : ''} onClick={() => handleClick('fund')}>발전기금</button>
-            <button className={active === 'service' ? styles.active : ''} onClick={() => handleClick('service')}>서비스</button>
+            {Object.keys(menuMap).map((key) => (
+              <button
+                key={key}
+                onClick={() => handleClick(key)}
+                className={currentPath === menuMap[key] ? styles.active : ''}
+              >
+                {menuLabel[key]}
+              </button>
+            ))}
           </div>
         </div>
-        <div className={styles.content}>
-          <Outlet />
-        </div>
+        <div className={styles.content}><Outlet /></div>
       </div>
       <Footer />
     </>

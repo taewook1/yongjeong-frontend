@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -12,12 +12,19 @@ const menuMap = {
   'alumni-etc': 'alumni-etc',
 };
 
+const menuLabel = {
+  'alumni-status': '회원 현황',
+  'alumni-group': '동기회',
+  'alumni-events': '주요 행사',
+  'alumni-etc': '기타(동호회 / 애경사)',
+};
+
 const AlumniPage = () => {
-  const [active, setActive] = useState('alumni-events');
+  const location = useLocation();
   const navigate = useNavigate();
+  const currentPath = location.pathname.split('/')[2];
 
   const handleClick = (key) => {
-    setActive(key);
     navigate(`/alumni/${menuMap[key]}`);
   };
 
@@ -25,27 +32,26 @@ const AlumniPage = () => {
     <>
       <Header />
       <Navbar />
-
       <div className={styles.sectionBanner}>
         <h2 className={styles.sectionTitle}>회원 동정</h2>
         <p className={styles.sectionSubtitle}>우리 동창들의 소식과 활동을 전합니다</p>
       </div>
-
       <div className={styles.alumniPage}>
         <div className={styles.sidebar}>
           <div className={styles.sidebarNav}>
-            <button onClick={() => handleClick('alumni-status')} className={active === 'alumni-status' ? styles.active : ''}>회원 현황</button>
-            <button onClick={() => handleClick('alumni-group')} className={active === 'alumni-group' ? styles.active : ''}>동기회</button>
-            <button onClick={() => handleClick('alumni-events')} className={active === 'alumni-events' ? styles.active : ''}>주요 행사</button>
-            <button onClick={() => handleClick('alumni-etc')} className={active === 'alumni-etc' ? styles.active : ''}>기타(동호회 / 애경사)</button>
+            {Object.keys(menuMap).map((key) => (
+              <button
+                key={key}
+                onClick={() => handleClick(key)}
+                className={currentPath === menuMap[key] ? styles.active : ''}
+              >
+                {menuLabel[key]}
+              </button>
+            ))}
           </div>
         </div>
-
-        <div className={styles.content}>
-          <Outlet />
-        </div>
+        <div className={styles.content}><Outlet /></div>
       </div>
-
       <Footer />
     </>
   );

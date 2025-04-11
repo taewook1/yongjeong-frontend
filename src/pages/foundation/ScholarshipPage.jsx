@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -10,38 +10,44 @@ const menuMap = {
   program: 'program'
 };
 
-const ScholarshipPage = () => {
-  const [active, setActive] = useState('intro');
-  const navigate = useNavigate();
+const menuLabel = {
+  intro: '재단 소개',
+  program: '장학 사업',
+};
 
-  const handleClick = (menuKey) => {
-    setActive(menuKey);
-    navigate(`/foundation/${menuMap[menuKey]}`);
+const ScholarshipPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentPath = location.pathname.split('/')[2];
+
+  const handleClick = (key) => {
+    navigate(`/foundation/${menuMap[key]}`);
   };
 
   return (
     <>
       <Header />
       <Navbar />
-
       <div className={styles.banner}>
         <h2 className={styles.bannerTitle}>장학재단</h2>
         <p className={styles.bannerSubtitle}>지속 가능한 나눔과 성장</p>
       </div>
-
       <div className={styles.foundationPage}>
         <div className={styles.sidebar}>
           <div className={styles.sidebarNav}>
-            <button className={active === 'intro' ? styles.active : ''} onClick={() => handleClick('intro')}>재단 소개</button>
-            <button className={active === 'program' ? styles.active : ''} onClick={() => handleClick('program')}>장학 사업</button>
+            {Object.keys(menuMap).map((key) => (
+              <button
+                key={key}
+                onClick={() => handleClick(key)}
+                className={currentPath === menuMap[key] ? styles.active : ''}
+              >
+                {menuLabel[key]}
+              </button>
+            ))}
           </div>
         </div>
-
-        <div className={styles.content}>
-          <Outlet />
-        </div>
+        <div className={styles.content}><Outlet /></div>
       </div>
-
       <Footer />
     </>
   );
