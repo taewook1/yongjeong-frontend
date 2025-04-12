@@ -19,7 +19,7 @@ const MembershipFeeGuide = () => {
           후배들에게 이어질 응원과, 동창창사회가 지속될 수 있는<br />
           든든한 뿌리가 되어 주세요.
         </p>
-        <button className={styles.button} onClick={() => navigate('/membership-fee')}>
+        <button className={styles.button} onClick={() => navigate('/membership/guide')}>
           <span className={styles.buttonText}>자세히 보기 &gt;</span>
         </button>
       </div>
