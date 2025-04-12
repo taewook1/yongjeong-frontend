@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "http://3.26.73.225:5000/api/$1"
+      "destination": "https://api.yjreunion.com/api/$1"
     },
     {
       "source": "/(.*)",
