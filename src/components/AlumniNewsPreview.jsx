@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/AlumniNewsPreview.css';
+import axios from '../api/axiosInstance';
 
 const AlumniNewsPreview = () => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/alumni-news/latest')
-      .then(res => res.json())
-      .then(data => setNews(data))
-      .catch(err => console.error('동문 동정 불러오기 실패:', err));
+    axios.get('/alumni-news/latest')
+      .then((res) => setNews(res.data))
+      .catch((err) => console.error('동창 동정 불러오기 실패:', err));
   }, []);
 
   return (
