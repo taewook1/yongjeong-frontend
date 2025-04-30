@@ -26,6 +26,9 @@ import CommunityPage from './pages/community/CommunityPage';
 import NoticePage from './pages/community/NoticePage';
 import PlansPage from './pages/community/PlansPage';
 import FreeboardPage from './pages/community/FreeboardPage';
+import FreeboardWrite from './pages/community/FreeboardWrite';
+import FreeboardDetail from './pages/community/FreeboardDetail';
+import FreeboardEdit from './pages/community/FreeboardEdit';
 
 import MembershipPage from './pages/membership/MembershipPage';
 import MembershipGuidePage from './pages/membership/MembershipGuidePage';
@@ -78,6 +81,10 @@ function App() {
           <Route path="notice" element={<NoticePage />} />
           <Route path="plans" element={<PlansPage />} />
           <Route path="freeboard" element={<FreeboardPage />} />
+          <Route path="freeboard/write" element={<FreeboardWrite />} />
+          <Route path="freeboard/:id" element={<FreeboardDetail />} />
+          <Route path="freeboard/edit/:id" element={<FreeboardEdit />} />
+
         </Route>
 
         <Route path="/membership" element={<MembershipPage />}>

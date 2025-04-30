@@ -1,0 +1,60 @@
+.write-container {
+  width: 100%;
+  max-width: 800px;
+  margin-left: 100px;
+  margin-top: 20px;
+  padding: 20px;
+  border-top: 3px solid #012361;
+}
+
+.write-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #012361;
+  margin-bottom: 20px;
+}
+
+.write-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-title {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.input-title:focus {
+  border-color: #012361;
+}
+
+.input-content {
+  min-height: 300px;
+  padding: 12px;
+  font-size: 16px;
+  resize: vertical;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.input-content:focus {
+  border-color: #012361;
+}
+
+.submit-btn {
+  align-self: flex-end;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #012361;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #003399;
+}
