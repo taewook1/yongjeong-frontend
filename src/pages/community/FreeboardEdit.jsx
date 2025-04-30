@@ -8,12 +8,14 @@ const FreeboardEdit = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const navigate = useNavigate();
+  const [author, setAuthor] = useState('');
 
   useEffect(() => {
     axios.get(`/posts/${id}`)
       .then((res) => {
         setTitle(res.data.title);
         setContent(res.data.content);
+        setAuthor(res.data.author);
       })
       .catch((err) => {
         console.error('불러오기 실패:', err);
@@ -29,7 +31,7 @@ const FreeboardEdit = () => {
     }
 
     try {
-      await axios.put(`/posts/${id}`, { title, content });
+      await axios.put(`/posts/${id}`, { title, content, author });
       alert('수정되었습니다.');
       navigate(`/community/freeboard/${id}`);
     } catch (err) {
