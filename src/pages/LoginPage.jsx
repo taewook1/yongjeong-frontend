@@ -27,12 +27,12 @@ const LoginPage = () => {
         username: form.username,
         password: form.password,
       });
-
-      const { token, user } = res.data;
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
-
-      navigate('/');
+    
+      // 응답 전체를 user로 저장
+      localStorage.setItem('user', JSON.stringify(res.data));
+    
+      // 강제 새로고침으로 Header 등 전체 반영
+      window.location.href = '/';
     } catch (err) {
       console.error(err);
       const msg = err.response?.data?.msg || '로그인에 실패했습니다.';

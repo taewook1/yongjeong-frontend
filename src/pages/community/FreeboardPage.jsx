@@ -6,15 +6,12 @@ import styles from '../../styles/community/FreeboardPage.module.css';
 const FreeboardPage = () => {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     axios.get('/posts')
-      .then((res) => {
-        setPosts(res.data);
-      })
-      .catch((err) => {
-        console.error('게시글 불러오기 실패:', err);
-      });
+      .then((res) => setPosts(res.data))
+      .catch((err) => console.error('게시글 불러오기 실패:', err));
   }, []);
 
   const handleWriteClick = () => {
@@ -25,7 +22,9 @@ const FreeboardPage = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.title}>자유게시판</h2>
-        <button onClick={handleWriteClick} className={styles.writeButton}>글쓰기</button>
+        {user && (
+          <button onClick={handleWriteClick} className={styles.writeButton}>글쓰기</button>
+        )}
       </div>
       <table className={styles.table}>
         <thead>

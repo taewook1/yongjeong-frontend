@@ -7,21 +7,21 @@ const FreeboardWrite = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!title || !content) {
-      alert('제목과 내용을 입력해주세요.');
-      return;
-    }
-
+    if (!title || !content) return alert('제목과 내용을 입력해주세요.');
+  
     try {
-      await axios.post('/posts', {
-        title,
-        content,
-        author: '익명', // 추후 로그인 사용자 정보로 대체
-      });
+      await axios.post('/posts', 
+        { title, content },
+        {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          }
+        }
+      );
       alert('게시글이 등록되었습니다.');
       navigate('/community/freeboard');
     } catch (error) {
@@ -32,24 +32,24 @@ const FreeboardWrite = () => {
 
   return (
     <div className={styles['write-container']}>
-    <h2 className={styles['write-title']}>게시글 작성</h2>
-    <form onSubmit={handleSubmit} className={styles['write-form']}>
-      <input
-        type="text"
-        placeholder="제목을 입력하세요"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className={styles['input-title']}
-      />
-      <textarea
-        placeholder="내용을 입력하세요"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        className={styles['input-content']}
-      />
-      <button type="submit" className={styles['submit-btn']}>등록</button>
-    </form>
-  </div>
+      <h2 className={styles['write-title']}>게시글 작성</h2>
+      <form onSubmit={handleSubmit} className={styles['write-form']}>
+        <input
+          type="text"
+          placeholder="제목을 입력하세요"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className={styles['input-title']}
+        />
+        <textarea
+          placeholder="내용을 입력하세요"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          className={styles['input-content']}
+        />
+        <button type="submit" className={styles['submit-btn']}>등록</button>
+      </form>
+    </div>
   );
 };
 

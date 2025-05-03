@@ -8,17 +8,15 @@ const FreeboardEdit = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const navigate = useNavigate();
-  const [author, setAuthor] = useState('');
+  const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     axios.get(`/posts/${id}`)
       .then((res) => {
         setTitle(res.data.title);
         setContent(res.data.content);
-        setAuthor(res.data.author);
       })
-      .catch((err) => {
-        console.error('불러오기 실패:', err);
+      .catch(() => {
         alert('게시글을 불러오지 못했습니다.');
       });
   }, [id]);
@@ -31,12 +29,16 @@ const FreeboardEdit = () => {
     }
 
     try {
-      await axios.put(`/posts/${id}`, { title, content, author });
+      await axios.put(`/posts/${id}`, { title, content }, {
+        headers: {
+          Authorization: `Bearer ${user?.token}`
+        }
+      });
       alert('수정되었습니다.');
       navigate(`/community/freeboard/${id}`);
-    } catch (err) {
-      console.error('수정 실패:', err);
+    } catch {
       alert('수정 중 오류가 발생했습니다.');
+      console.log(user?.token);
     }
   };
 

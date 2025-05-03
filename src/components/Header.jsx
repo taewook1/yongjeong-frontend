@@ -1,16 +1,27 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaUserCircle, FaBell, FaSignOutAlt } from "react-icons/fa";
 import logo from '../assets/mainlogo2.png';
 import "../styles/Header.css";
 
 function Header() {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const location = useLocation();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    try {
+      const storedUser = JSON.parse(localStorage.getItem("user") || "null");
+      setUser(storedUser);
+    } catch {
+      setUser(null);
+    }
+  }, [location.pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    navigate('/');
+    window.location.href = '/';
   };
 
   return (
